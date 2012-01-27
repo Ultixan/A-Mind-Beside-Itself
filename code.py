@@ -2,10 +2,7 @@ import web
 from google.appengine.ext import db
 
 urls = (
-  '/', 'index',
-  '/note', 'note',
-  '/source', 'source',
-  '/crash', 'crash'
+  '/', 'index'
 )
 
 render = web.template.render('templates/')
@@ -36,12 +33,6 @@ class source:
           '\n\n## templates/index.html\n\n' + 
           file('templates/index.html').read()
         )
-
-class crash:
-    def GET(self):
-        import logging
-        logging.error('test')
-        crash
 
 app = web.application(urls, globals())
 main = app.cgirun()
