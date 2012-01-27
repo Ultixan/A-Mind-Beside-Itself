@@ -16,7 +16,7 @@ class index:
         notes = db.GqlQuery("SELECT * FROM Note ORDER BY date DESC LIMIT 10")
         return render.index(notes)
 
-#this is a comment
+#this is a comment [fixed]
 
 class note:
     def POST(self):
