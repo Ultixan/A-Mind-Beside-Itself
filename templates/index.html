@@ -1,0 +1,20 @@
+$def with (notes)
+<h1>Hello, world!</h1>
+
+<h2>last 10 notes</h2>
+
+$for note in notes:
+    <p>$note.content <span style="color: gray">($note.date)</span></p>
+
+<h2>add a note</h2>
+<form method="post" action="/note">
+  <textarea name="content"></textarea><br />
+<button type="submit">save</button>
+
+<h2>about this site</h2>
+
+<p>This is a web.py example app, demonstrating that it works fine with Google App Engine. <a href="/source">View the source.</a></p>
+
+<address>
+  <a href="http://www.aaronsw.com/">Aaron Swartz</a> for <a href="http://webpy.org/">web.py</a>
+</address>
