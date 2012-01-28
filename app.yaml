@@ -11,5 +11,7 @@ handlers:
   static_dir: images
 - url: /html5game
   static_dir: html5game
+- url: /res
+  static_dir: res
 - url: /.*
   script: code.py

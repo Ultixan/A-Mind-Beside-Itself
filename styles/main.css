@@ -35,3 +35,6 @@ a:hover {
     list-style: none;
     padding: 0;
 }
+#imgloader{
+	float:right;
+}

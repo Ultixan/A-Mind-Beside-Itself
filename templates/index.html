@@ -2,11 +2,22 @@
   <head>
     <title>A Mind Beside Itself</title>
 	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
+	<script type="text/javascript" src="res/jquery.js"></script>
+    <script type="text/javascript" src="res/images.js"></script>
+	<script>
+	$(document).ready(function(){
+		for(var i=0; i<10; i++){
+			animateImage();
+		}
+	}
+	);
+	</script>
   </head>
   <body class="main-body">
     <h1>A Mind Beside Itself</h1>
     <h2>Welcome, {{ acc.user.nickname }}</h2>
     <h3>List of games:</h3>
+    <div id="imgloader"><img src="res/kingofwands.png"></div>
     <ul id="game_list">
       {% for game in games %}
       <li>
