@@ -4,7 +4,6 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 
-from constants import goals
 from util import get_account
 from util import template_path
 from util import validate_player
@@ -67,8 +66,9 @@ class create(webapp.RequestHandler):
                 players.append(player)
 
         if len(players) > 1:
+            name = cgi.escape(self.request.get('game_name'))
             from util import create_new_game
-            create_new_game(players)
+            create_new_game(players, name)
             return self.redirect('/')
 
 class populate(webapp.RequestHandler):
@@ -89,13 +89,13 @@ class populate(webapp.RequestHandler):
         )
 
 class move(webapp.RequestHandler):
-    def get(self):
+    def post(self):
         from ambi import move_character
         user = users.get_current_user()
         game_id = cgi.escape(self.request.get('game_id'))
         if not validate_player(user.nickname(), game_id):
             #This needs to point to a failure screen
-            self.redirect('/')
+            return self.redirect('/')
       
         x = cgi.escape(self.request.get('x'))
         y = cgi.escape(self.request.get('y'))
@@ -128,12 +128,27 @@ class interact(webapp.RequestHandler):
                 json.dumps(do_interaction(game_id, x, y))
         )
 
+class run_game(webapp.RequestHandler):
+    path = template_path('game.html')
+    def get(self):
+        user = users.get_current_user()
+        game_id = cgi.escape(self.request.get('game_id'))
+        if not validate_player(user.nickname(), game_id):
+            #This needs to point to a failure screen
+            self.redirect('/')
+        
+        self.response.out.write(
+            template.render(self.path, {})
+        )
+        
+
 urls = [
   ('/', game_list),
   ('/create', create),
   ('/populate', populate),
   ('/move', move),
-  ('/interact', interact)
+  ('/interact', interact),
+  ('/game', run_game)
   ]
 
 app = webapp.WSGIApplication(urls, debug=True)

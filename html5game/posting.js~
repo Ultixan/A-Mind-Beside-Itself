@@ -1,0 +1,9 @@
+function validity_check(response)
+{
+	
+}
+
+function position_post(gridX, gridY)
+{
+	$.post("http://137.158.57.173:8080/move?",{game_id: 82493c38-49ac-11e1-8968-4bdaf945b7c9,x: gridX, y: gridY}, validity_check(response));
+}

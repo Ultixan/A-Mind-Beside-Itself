@@ -81,11 +81,21 @@ def get_major_arcana():
         'hanged'
         ]
 
-def create_new_game(players):
+def get_goals():
+    return {
+        'sword': ['chair','doll','matchbox','knife'],
+        'coin': ['silver','purse','gold','card'],
+        'cup': ['bottle','food','milk','bread'],
+        'wand': ['cloth','ticket','pen','key']
+        }
+
+def create_new_game(players, name):
     import uuid
     from models import Game
     from constants import default_counter
+    from constants import win_types
     game = Game()
+    game.game_name = name
     game.game_id = str(uuid.uuid1())
     game.players = players
     game.current_player = random.randint(0, len(players) - 1)
@@ -97,6 +107,15 @@ def create_new_game(players):
         num = random.randint(0, len(arcana) - 1)
         game.major_arcana.append(arcana[num])
         del arcana[num]
+    
+    goals = get_goals()
+    game.goals = []
+    for i in game.major_arcana:
+        for goal in win_types[i]:
+            num = random.randint(0, len(goals[goal]) - 1)
+            game.goals.append(goals[goal][num])
+            del goals[goal][num]
+
     game.put()
 
 def validate_player(nickname, game_id):
@@ -117,6 +136,9 @@ def get_world_data(nickname, game_id):
     current = game.current_player
     data['character']['arcana'] = game.major_arcana[current]
     data['move_counter'] = game.move_counter
+    data['character']['goals'] = []
+    data['character']['goals'].append(game.goals[current * 2])
+    data['character']['goals'].append(game.goals[(current * 2) + 1])
 
     return data
 

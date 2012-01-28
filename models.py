@@ -6,14 +6,9 @@ class Game(db.Model):
     players = db.StringListProperty()
     current_player = db.IntegerProperty()
     major_arcana = db.StringListProperty()
-    goals = db.IntegerProperty()
+    goals = db.StringListProperty()
     move_counter = db.IntegerProperty()
     data = db.TextProperty()
-
-class Player(db.Model):
-    game_id = db.StringProperty()
-    x = db.IntegerProperty()
-    y = db.IntegerProperty()
 
 class Account(db.Model):
     user = db.UserProperty()

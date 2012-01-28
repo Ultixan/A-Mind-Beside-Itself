@@ -7,5 +7,9 @@ threadsafe: no
 handlers:
 - url: /styles
   static_dir: styles
+- url: /images
+  static_dir: images
+- url: /html5game
+  static_dir: html5game
 - url: /.*
   script: code.py

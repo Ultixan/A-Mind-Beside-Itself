@@ -7,9 +7,19 @@
     <h1>A Mind Beside Itself</h1>
     <h2>Welcome, {{ acc.user.nickname }}</h2>
     <h3>List of games:</h3>
-    <ul>
+    <ul id="game_list">
       {% for game in games %}
-      <li>{{ game.game_id }}</li>
+      <li>
+        <a class="game_name" href="game?game_id={{ game.game_id }}">
+          {{ game.game_name }}: 
+        </a>
+        <span>
+          {% for player in game.players %}
+          {{ player }}
+          {% endfor %}
+        </span>
+        </a>
+      </li>
       {% endfor %}
     </ul>
     <a href="create">Create new game</a>
