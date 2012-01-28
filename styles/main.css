@@ -1,0 +1,24 @@
+.main-body{
+	background-color:#000;
+	color:#eee;
+	margin-left:200px;
+	margin-right:200px;
+}
+.playernames{
+	margin-left:20px;
+}
+h1 h2{
+	color:#eee;
+}
+h3 ul li{
+	font-family:sans-serif;
+	color:#eee;
+}
+a{
+	color:#0000ff;
+	text-decoration:none;
+}
+a:hover{
+	color:#000;
+	background-color:#ffff00;
+}

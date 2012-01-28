@@ -5,5 +5,7 @@ api_version: 1
 threadsafe: no
 
 handlers:
+- url: /styles
+  static_dir: styles
 - url: /.*
   script: code.py
