@@ -20,3 +20,22 @@ goals = goals_data()
 
 template_dir = '/templates/'
 default_counter = 7
+
+uses = {
+    'lady': 'chair',
+    'girl': 'doll',
+    'lantern': 'matchbox',
+    'villain': 'knife',
+    'phone': 'silver',
+    'woman': 'purse',
+    'booth': 'gold',
+    'atm': 'card',
+    'water': 'bottle',
+    'beggar': 'food',
+    'cat': 'milk',
+    'bird': 'bread',
+    'mirror': 'cloth',
+    'man': 'ticket',
+    'sign': 'pen',
+    'clock': 'key'
+}

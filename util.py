@@ -5,11 +5,11 @@ import random
 import json
 
 def create_world_data():
+    from models import Interactions
     #character data
     character = {}
     character['x'] = 0
     character['y'] = 0
-    character['inventory'] = []
 
     #generate the goal list
     options = range(16)
@@ -23,6 +23,8 @@ def create_world_data():
     data = {}
     data['character'] = character
     data['goals'] = goals
+    data['status'] = Interactions().__dict__
+ 
     return data
 
 def template_path(template):

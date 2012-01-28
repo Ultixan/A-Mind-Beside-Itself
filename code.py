@@ -17,13 +17,13 @@ class game_list(webapp.RequestHandler):
 
     def get(self):
         from util import get_active_games
-        import json
-        from util import create_world_data
         user = users.get_current_user()
+
         if not user:
-            self.redirect(users.create_login_url(self.request.uri))
- 
-#        self.response.out.write(json.dumps(create_world_data()))
+            return self.redirect(
+                users.create_login_url(self.request.uri)
+            )
+        
         acc = get_account(user)
         games = get_active_games(user)
         template_values = {
@@ -40,7 +40,9 @@ class create(webapp.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if not user:
-            self.redirect(users.create_login_url(self.request.uri))
+            return self.redirect(
+                users.create_login_url(self.request.uri)
+            )
 
         acc = get_account(user)
         template_values = {
@@ -54,10 +56,11 @@ class create(webapp.RequestHandler):
         from util import is_valid_user
         user = users.get_current_user()
         if not user:
-            self.redirect(users.create_login_url(self.request.uri))
+            return self.redirect(
+                users.create_login_url(self.request.uri)
+            )
         
         players = [user.nickname()]
-        self.response.out.write('<html><body>')
         for i in ['2','3','4']:
             player = cgi.escape(self.request.get('player' + i))
             if player and player is not '' and is_valid_user(player):

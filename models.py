@@ -19,3 +19,30 @@ class Account(db.Model):
     user = db.UserProperty()
     win = db.IntegerProperty()
     lose = db.IntegerProperty()
+
+class Interactions:
+    #set up object statuses
+    def __init__(self):
+        #sword
+        self.chair = 0
+        self.doll = 0
+        self.matchbox = 0
+        self.knife = 0
+
+        #coin
+        self.silver = 0
+        self.purse = 0
+        self.gold = 0
+        self.card = 0
+
+        #cup
+        self.bottle = 0
+        self.food = 0
+        self.milk = 0
+        self.bread = 0
+
+        #wand
+        self.cloth = 0
+        self.ticket = 0
+        self.pen = 0
+        self.key = 0
