@@ -1,11 +1,16 @@
-$def with (notes)
-<h1>A Mind Beside Itself</h1>
-
-<h2>Global Game Jam 2012 Entry</h2>
-
-<p>This is our entry for the Global Game Jam 2012.
-If you want to track the progress as we develop the game, you can 
-follow Ultixan on twitter.
-You can thank github for pushing out updates as we commit code to
-the repository.
-</p>
+<html>
+  <head>
+    <title>A Mind Beside Itself</title>
+  </head>
+  <body>
+    <h1>A Mind Beside Itself</h1>
+    <h2>Welcome, {{ acc.user.nickname }}</h2>
+    <h3>List of games:</h3>
+    <ul>
+      {% for game in acc.games %}
+      <li>{{ game }}</li>
+      {% endfor %}
+    </ul>
+    <a href="create">Create new game</a>
+  </body>
+</html>

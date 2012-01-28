@@ -1,52 +1,70 @@
-from google.appengine.ext import db
 from google.appengine.api import users
+from google.appengine.ext import db
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 
 from constants import goals
-from django.utils import simplejson as json
+from util import get_account
+from util import template_path
 
-class Game(db.Model):
-    game_id = db.StringProperty()
-    players = db.StringListProperty()
-    current_player = db.IntegerProperty()
-    goals = db.IntegerProperty()
-    content = db.ListProperty(int)
-    move_counter = db.IntegerProperty()
-
-class Player(db.Model):
-    game_id = db.StringProperty()
-    x = db.IntegerProperty()
-    y = db.IntegerProperty()
-
-class Account(db.Model):
-    user = db.UserProperty()
-    games = db.StringListProperty()
+import cgi
 
 class usertest(webapp.RequestHandler):
+    path = template_path('index.html')
+
     def get(self):
         user = users.get_current_user()
-        if user:
-            self.response.headers['Content-Type'] = 'text/plain'
-            existing = db.GqlQuery('SELECT * from Account ' +
-                'WHERE user = :1',
-                user)
-            if existing.count() == 0:
-                account = Account()
-                account.user = user
-                account.put()
-                self.response.out.write('Hello, ' + user.nickname())
-            else:
-                acc = existing[0]
-                self.response.out.write(acc.user.nickname())
-        else:
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
+        
+        acc = get_account(user)
+        template_values = {
+            'acc': acc
+        }
+        self.response.out.write(
+            template.render(self.path, template_values)
+        )
+
+class create(webapp.RequestHandler):
+    path = template_path('create.html')
+
+    def get(self):
+        user = users.get_current_user()
+        if not user:
             self.redirect(users.create_login_url(self.request.uri))
 
+        acc = get_account(user)
+        template_values = {
+            'acc': acc
+        }
+        self.response.out.write(
+            template.render(self.path, template_values)
+        )
+
+    def post(self):
+        from util import get_valid_account
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
+        
+        players = [user.nickname()]
+        self.response.out.write('<html><body>')
+        for i in ['2','3','4']:
+            player = cgi.escape(self.request.get('player' + i))
+            if player and player is not '' and is_valid_user(player):
+                players.append(player)
+
+        if len(players) > 1:
+            from util import create_new_game
+            create_new_game(players)
+
 urls = [
-  ('/', usertest)
+  ('/', usertest),
+  ('/create', create)
   ]
 
-app = webapp.WSGIApplication(urls)
+app = webapp.WSGIApplication(urls, debug=True)
 
 def main():
     run_wsgi_app(app)

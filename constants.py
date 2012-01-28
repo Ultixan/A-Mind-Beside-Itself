@@ -17,3 +17,6 @@ class goals_data:
     swords_king = pow(2,15)
 
 goals = goals_data()
+
+template_dir = '/templates/'
+default_counter = 7
