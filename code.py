@@ -1,40 +1,55 @@
-import web
 from google.appengine.ext import db
+from google.appengine.api import users
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
 
-urls = (
-  '/', 'index'
-)
+from constants import goals
+from django.utils import simplejson as json
 
-render = web.template.render('templates/')
+class Game(db.Model):
+    game_id = db.StringProperty()
+    players = db.StringListProperty()
+    current_player = db.IntegerProperty()
+    goals = db.IntegerProperty()
+    content = db.ListProperty(int)
+    move_counter = db.IntegerProperty()
 
-class Note(db.Model):
-    content = db.StringProperty(multiline=True)
-    date = db.DateTimeProperty(auto_now_add=True)
+class Player(db.Model):
+    game_id = db.StringProperty()
+    x = db.IntegerProperty()
+    y = db.IntegerProperty()
 
-class index:
-    def GET(self):
-        notes = db.GqlQuery("SELECT * FROM Note ORDER BY date DESC LIMIT 10")
-        return render.index(notes)
+class Account(db.Model):
+    user = db.UserProperty()
+    games = db.StringListProperty()
 
-#this is a comment [fixed]
+class usertest(webapp.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            self.response.headers['Content-Type'] = 'text/plain'
+            existing = db.GqlQuery('SELECT * from Account ' +
+                'WHERE user = :1',
+                user)
+            if existing.count() == 0:
+                account = Account()
+                account.user = user
+                account.put()
+                self.response.out.write('Hello, ' + user.nickname())
+            else:
+                acc = existing[0]
+                self.response.out.write(acc.user.nickname())
+        else:
+            self.redirect(users.create_login_url(self.request.uri))
 
-class note:
-    def POST(self):
-        i = web.input('content')
-        note = Note()
-        note.content = i.content
-        note.put()
-        return web.seeother('/')
+urls = [
+  ('/', usertest)
+  ]
 
-class source:
-    def GET(self):
-        web.header('Content-Type', 'text/plain')
-        return (
-          '## code.py\n\n' + 
-          file('code.py').read() + 
-          '\n\n## templates/index.html\n\n' + 
-          file('templates/index.html').read()
-        )
+app = webapp.WSGIApplication(urls)
 
-app = web.application(urls, globals())
-main = app.cgirun()
+def main():
+    run_wsgi_app(app)
+
+if __name__ == '__main__':
+    main()
