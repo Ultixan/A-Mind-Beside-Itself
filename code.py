@@ -14,13 +14,19 @@ class usertest(webapp.RequestHandler):
     path = template_path('index.html')
 
     def get(self):
+        from util import get_active_games
+        import json
+        from util import create_world_data
         user = users.get_current_user()
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
-        
+ 
+#        self.response.out.write(json.dumps(create_world_data()))
         acc = get_account(user)
+        games = get_active_games(user)
         template_values = {
-            'acc': acc
+            'acc': acc,
+            'games': games
         }
         self.response.out.write(
             template.render(self.path, template_values)

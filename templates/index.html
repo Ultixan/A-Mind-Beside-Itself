@@ -7,8 +7,8 @@
     <h2>Welcome, {{ acc.user.nickname }}</h2>
     <h3>List of games:</h3>
     <ul>
-      {% for game in acc.games %}
-      <li>{{ game }}</li>
+      {% for game in games %}
+      <li>{{ game.game_id }}</li>
       {% endfor %}
     </ul>
     <a href="create">Create new game</a>
