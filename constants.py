@@ -39,3 +39,7 @@ uses = {
     'sign': 'pen',
     'clock': 'key'
 }
+
+item_at = {
+    (0,1): 'lady'
+}

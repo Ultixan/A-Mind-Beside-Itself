@@ -69,6 +69,7 @@ class create(webapp.RequestHandler):
         if len(players) > 1:
             from util import create_new_game
             create_new_game(players)
+            return self.redirect('/')
 
 class populate(webapp.RequestHandler):
     def get(self):
@@ -104,15 +105,35 @@ class move(webapp.RequestHandler):
             'application/json', 
             charset='utf-8')
         self.response.out.write(
-                json.dumps({'move': move_character(game_id, x, y)})
+                json.dumps(move_character(game_id, x, y))
         )
 
+class interact(webapp.RequestHandler):
+    def get(self):
+        from ambi import do_interaction
+        user = users.get_current_user()
+        game_id = cgi.escape(self.request.get('game_id'))
+        if not validate_player(user.nickname(), game_id):
+            #This needs to point to a failure screen
+            self.redirect('/')
+
+        x = cgi.escape(self.request.get('x'))
+        y = cgi.escape(self.request.get('y'))
+        
+        self.response.headers.add_header(
+            'content-type', 
+            'application/json', 
+            charset='utf-8')
+        self.response.out.write(
+                json.dumps(do_interaction(game_id, x, y))
+        )
 
 urls = [
   ('/', game_list),
   ('/create', create),
   ('/populate', populate),
-  ('/move', move)
+  ('/move', move),
+  ('/interact', interact)
   ]
 
 app = webapp.WSGIApplication(urls, debug=True)
