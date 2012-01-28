@@ -11,18 +11,9 @@ def create_world_data():
     character['x'] = 0
     character['y'] = 0
 
-    #generate the goal list
-    options = range(16)
-    goals = 0
-    for i in range(8):
-        num = random.randint(0, len(options) - 1)
-        goals += pow(2,options[num])
-        del options[num]
-
     #attach objects to data set
     data = {}
     data['character'] = character
-    data['goals'] = goals
     data['status'] = Interactions().__dict__
  
     return data

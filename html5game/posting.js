@@ -22,3 +22,26 @@ function position_post(gridX, gridY) {
     }, 
     validity_check);
 }
+
+function getCharacterPosition() {
+    if (!Data) {
+        return null;
+    }
+
+    var wisp = Data['character'];
+    return [wisp['x'], wisp['y']]; 
+}
+
+function getGoalData() {
+    if (!Data) {
+        return null;
+    }
+
+    var goals = Data['character']['goals'];
+    var stats = Data['status'];
+    
+    return {
+        goals[0]: (stats[goals[0]] == 2),
+        goals[1]: (stats[goals[1] == 2)
+    };
+}
