@@ -7,10 +7,12 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from constants import goals
 from util import get_account
 from util import template_path
+from util import validate_player
 
 import cgi
+import json
 
-class usertest(webapp.RequestHandler):
+class game_list(webapp.RequestHandler):
     path = template_path('index.html')
 
     def get(self):
@@ -49,7 +51,7 @@ class create(webapp.RequestHandler):
         )
 
     def post(self):
-        from util import get_valid_account
+        from util import is_valid_user
         user = users.get_current_user()
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
@@ -65,9 +67,49 @@ class create(webapp.RequestHandler):
             from util import create_new_game
             create_new_game(players)
 
+class populate(webapp.RequestHandler):
+    def get(self):
+        from util import get_world_data
+        user = users.get_current_user()
+        game_id = cgi.escape(self.request.get('game_id'))
+        if not validate_player(user.nickname(), game_id):
+            #This needs to point to a failure screen
+            self.redirect('/')
+
+        self.response.headers.add_header(
+            'content-type', 
+            'application/json', 
+            charset='utf-8')
+        self.response.out.write(
+            json.dumps(get_world_data(user.nickname(), game_id))
+        )
+
+class move(webapp.RequestHandler):
+    def get(self):
+        from ambi import move_character
+        user = users.get_current_user()
+        game_id = cgi.escape(self.request.get('game_id'))
+        if not validate_player(user.nickname(), game_id):
+            #This needs to point to a failure screen
+            self.redirect('/')
+      
+        x = cgi.escape(self.request.get('x'))
+        y = cgi.escape(self.request.get('y'))
+        
+        self.response.headers.add_header(
+            'content-type', 
+            'application/json', 
+            charset='utf-8')
+        self.response.out.write(
+                json.dumps({'move': move_character(game_id, x, y)})
+        )
+
+
 urls = [
-  ('/', usertest),
-  ('/create', create)
+  ('/', game_list),
+  ('/create', create),
+  ('/populate', populate),
+  ('/move', move)
   ]
 
 app = webapp.WSGIApplication(urls, debug=True)

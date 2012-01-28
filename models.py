@@ -5,6 +5,7 @@ class Game(db.Model):
     game_name = db.StringProperty()
     players = db.StringListProperty()
     current_player = db.IntegerProperty()
+    major_arcana = db.StringListProperty()
     goals = db.IntegerProperty()
     move_counter = db.IntegerProperty()
     data = db.TextProperty()
