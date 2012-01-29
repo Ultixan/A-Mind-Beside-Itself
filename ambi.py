@@ -57,8 +57,8 @@ def do_interaction(game_id, x, y):
         game.put()
         
         for index in range(0,len(game.players)):
-            goal1_status = data['status'][game.goals[2*index]
-            goal2_status = data['status'][game.goals[2*index+1]
+            goal1_status = data['status'][game.goals[2*index]]
+            goal2_status = data['status'][game.goals[2*index+1]]
             if (goal1_status + goal2_status == 4):
                 return "winner"
         
