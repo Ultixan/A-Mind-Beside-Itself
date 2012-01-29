@@ -114,3 +114,14 @@ body {
 #man {
     z-index: 2;
 }
+
+#counter {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 60px;
+    width: 300px;
+    color: white;
+    font-size: 30pt;
+    font-weight: bolder;
+}
