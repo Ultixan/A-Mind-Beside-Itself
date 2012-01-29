@@ -125,12 +125,36 @@ class interact(webapp.RequestHandler):
             'application/json', 
             charset='utf-8')
         result = do_interaction(game_id, x, y)
-        if result == 'winner':
-            return self.redirect('/win')
+        if result[0] == 'winner':
+            return self.redirect('/win?winner='+result[1])
+        else:
+             return self.redirect('/lose?winner='+result[1])
         self.response.out.write(
                 json.dumps(result)
         )
 
+class lose(webapp.RequestHandler):
+    path = template_path('lose.html')
+    def get(self):
+        winner = cgi_escape(self.request.get('winner'))
+    template_values = {
+            'winner': winner
+        }
+        self.response.out.write(
+            template.render(self.path, template_values)
+        )
+
+class win(webapp.RequestHandler): 
+    path = template_path('win.html')
+    def get(self):
+        winner = cgi_escape(self.request.get('winner'))
+    template_values = {
+            'winner': winner
+        }
+        self.response.out.write(
+            template.render(self.path, template_values)
+        )     
+        
 class run_game(webapp.RequestHandler):
     path = template_path('game.html')
     def get(self):
@@ -161,7 +185,9 @@ urls = [
   ('/move', move),
   ('/interact', interact),
   ('/game', run_game),
-  ('/locations', reverse_listing)
+  ('/locations', reverse_listing),
+  ('/win', win),
+  ('/lose',lose)
   ]
 
 app = webapp.WSGIApplication(urls, debug=True)
