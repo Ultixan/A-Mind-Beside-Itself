@@ -126,7 +126,7 @@ class interact(webapp.RequestHandler):
             charset='utf-8')
         result = do_interaction(game_id, x, y)
         if result == 'winner':
-            return.self.redirect('/win')
+            return self.redirect('/win')
         self.response.out.write(
                 json.dumps(result)
         )
