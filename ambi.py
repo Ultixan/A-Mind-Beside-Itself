@@ -13,7 +13,7 @@ def move_character(game_id, x, y):
     diff = abs(int(char['x']) - int(x)) + abs(int(char['y']) - int(y))
     if diff == 1:
         item = item_at.get((int(x), int(y)))
-        if item and data['status'][item] == 0:
+        if item and (not item in data['status'] or data['status'][item] == 0):
             return False
         char['x'] = int(x)
         char['y'] = int(y)
