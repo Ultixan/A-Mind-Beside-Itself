@@ -17,9 +17,9 @@ var titles = {
     'milk': 'Give milk to the cat',
     'bread': 'Give bread to the bird',
     'cloth': 'Use cloth to clean mirror',
-    'ticket': 'Retern the ticket to the man',
+    'ticket': 'Return the ticket to the man',
     'pen': 'Use the pen to change the signpost',
-    'key': 'Use the key to cahnge the clock'
+    'key': 'Use the key to change the clock'
 }
 
 function getParams() {
@@ -255,6 +255,11 @@ var handlePopulate = function(response) {
         br.css('bottom', pos_br.y + 'px');
         bl.css('right', pos_bl.x + 'px');
         bl.css('bottom', pos_bl.y + 'px');
+        
+        data['move_counter'] -= 1;
+        if (data['move_counter'] == 0) {
+            window.location.reload();
+        }
     });
     var body = $('body');
     body.append(player).append(tr).append(tl).append(br).append(bl);
