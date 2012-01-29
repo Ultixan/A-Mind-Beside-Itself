@@ -72,7 +72,7 @@ class create(webapp.RequestHandler):
             return self.redirect('/')
 
 class populate(webapp.RequestHandler):
-    def get(self):
+    def post(self):
         from util import get_world_data
         user = users.get_current_user()
         game_id = cgi.escape(self.request.get('game_id'))

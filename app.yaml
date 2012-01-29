@@ -9,8 +9,8 @@ handlers:
   static_dir: styles
 - url: /images
   static_dir: images
-- url: /html5game
-  static_dir: html5game
+- url: /scripts
+  static_dir: scripts
 - url: /res
   static_dir: res
 - url: /.*
