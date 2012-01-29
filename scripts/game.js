@@ -299,6 +299,11 @@ function getGameData() {
 var startup = function() {
     buildPlatform();
     getGameData();
+    for (var i=10000; i < 10016; i+=1) {
+        var im = new Image();
+        im.src = 'images/character/character-00' + i + '.png';
+        frames.push(im);
+    }
 };
 
 $(document).ready(startup);
