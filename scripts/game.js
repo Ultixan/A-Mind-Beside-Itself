@@ -101,6 +101,26 @@ var loadInteractions = function(response) {
     }
 }
 
+var handleInteraction = function(response) {
+    if (response === 'false') {
+        return;
+    }
+    var item = JSON.parse(response);
+    if (item[1] === 1) {
+        $('#' + item[0]).remove();
+    }
+};
+
+function interact(x, y) {
+    var params = getParams();
+    $.post('interact', {
+        'game_id': params['game_id'],
+        'x': x,
+        'y': y
+    },
+    handleInteraction);
+}
+
 var handlePopulate = function(response) {
     data = JSON.parse(response);
     var card = $('#major_arcana');
@@ -132,34 +152,62 @@ var handlePopulate = function(response) {
     var tr = $('<img class="arrow" id="tr"/>');
     tr.attr('src', 'images/arrow_tr.png');
     tr.bind('click', function() {
-        tryMove(
-            data['character']['x'] - 1,
-            data['character']['y']
-        );
+        if (tr.attr('src') === 'images/arrow_tr.png') {
+            tryMove(
+                data['character']['x'] - 1,
+                data['character']['y']
+            );
+        } else {
+            interact(
+                data['character']['x'] - 1,
+                data['character']['y']
+            );
+        }
     });
     var tl = $('<img class="arrow" id="tl"/>');
     tl.attr('src', 'images/arrow_tl.png');
     tl.bind('click', function() {
-        tryMove(
-            data['character']['x'],
-            data['character']['y'] + 1
-        );
+        if (tl.attr('src') === 'images/arrow_tl.png') {
+            tryMove(
+                data['character']['x'],
+                data['character']['y'] + 1
+            );
+        } else {
+            interact(
+                data['character']['x'],
+                data['character']['y'] + 1
+            );
+        }
     });
     var br = $('<img class="arrow" id="br"/>');
     br.attr('src', 'images/arrow_br.png');
     br.bind('click', function() {
-        tryMove(
-            data['character']['x'],
-            data['character']['y'] - 1
-        );
+        if (br.attr('src') === 'images/arrow_br.png') {
+            tryMove(
+                data['character']['x'],
+                data['character']['y'] - 1
+            );
+        } else {
+            interact(
+                data['character']['x'],
+                data['character']['y'] - 1
+            );
+        }
     });
     var bl = $('<img class="arrow" id="bl"/>');
     bl.attr('src', 'images/arrow_bl.png');
     bl.bind('click', function() {
-        tryMove(
-            data['character']['x'] + 1,
-            data['character']['y']
-        );
+        if (bl.attr('src') === 'images/arrow_bl.png') {
+            tryMove(
+                data['character']['x'] + 1,
+                data['character']['y']
+            );
+        } else {
+            interact(
+                data['character']['x'] + 1,
+                data['character']['y']
+            );
+        }
     });
     
     player.bind('moved', function() {
