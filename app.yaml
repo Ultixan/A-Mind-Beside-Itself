@@ -7,6 +7,10 @@ threadsafe: no
 handlers:
 - url: /styles
   static_dir: styles
+- url: /images
+  static_dir: images
+- url: /scripts
+  static_dir: scripts
 - url: /res
   static_dir: res
 - url: /.*

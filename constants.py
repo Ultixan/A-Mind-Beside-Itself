@@ -1,23 +1,3 @@
-class goals_data:
-    cups_page = pow(2,0)
-    cups_knight = pow(2,1)
-    cups_queen = pow(2,2)
-    cups_king = pow(2,3)
-    coins_page = pow(2,4)
-    coins_knight = pow(2,5)
-    coins_queen = pow(2,6)
-    coins_king = pow(2,7)
-    wands_page = pow(2,8)
-    wands_knight = pow(2,9)
-    wands_queen = pow(2,10)
-    wands_king = pow(2,11)
-    swords_page = pow(2,12)
-    swords_knight = pow(2,13)
-    swords_queen = pow(2,14)
-    swords_king = pow(2,15)
-
-goals = goals_data()
-
 template_dir = '/templates/'
 default_counter = 7
 
@@ -41,5 +21,45 @@ uses = {
 }
 
 item_at = {
-    (0,1): 'lady'
+    (1,5): 'lady',
+    (13,9): 'girl',
+    (0,0): 'lantern',
+    (3,10): 'villain',
+    (8,9): 'phone',
+    (12,5): 'woman',
+    (8,5): 'booth',
+    (0,7): 'atm',
+    (17,9): 'water',
+    (9,0): 'beggar',
+    (0,5): 'cat',
+    (17,0): 'bird',
+    (13,6): 'mirror',
+    (19,4): 'man',
+    (4,1): 'sign',
+    (5,1): 'clock',
+    (6,9): 'chair',
+    (19,0): 'doll',
+    (7,5): 'matchbox',
+    (18,9): 'knife',
+    (0,2): 'silver',
+    (1,2): 'purse',
+    (17,2): 'gold',
+    (19,5): 'card',
+    (4,2): 'bottle',
+    (1,10): 'food',
+    (14,9): 'milk',
+    (9,9): 'bread',
+    (10,0): 'cloth',
+    (7,1): 'ticket',
+    (15,4): 'pen',
+    (19,10): 'key'
+}
+
+win_types = {
+    'fool': ['coin', 'sword'],
+    'magician': ['wand', 'sword'],
+    'priestess': ['cup', 'wand'],
+    'heirophant': ['cup', 'coin'],
+    'hermit': ['wand', 'coin'],
+    'hanged': ['sword', 'cup']
 }

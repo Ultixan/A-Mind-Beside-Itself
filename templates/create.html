@@ -14,18 +14,20 @@
   <body class="main-body">
     <h1>Create New Game</h1>
 	  <div id="imgloader"><img class="image" src="res/pageofcups.png"></div>
-	<div class="playernames">
-      <span>Player 1:</span>
-      <span>{{ acc.user.nickname }}</span>
-      <form method="post">
-        <label for="player2">Player 2:</label>
-        <input type="text" name="player2"/><br/>
-        <label for="player2">Player 3:</label>
-        <input type="text" name="player3"/><br/>
-        <label for="player2">Player 4:</label>
-        <input type="text" name="player4"/></br>
-        <input type="submit" value="Create"/>
-      </form>
-	</div>
+      <div class="playernames">
+        <span>Player 1:</span>
+        <span>{{ acc.user.nickname }}</span>
+        <form method="post">
+          <label for="player2">Player 2:</label>
+          <input type="text" name="player2"/><br/>
+          <label for="player2">Player 3:</label>
+          <input type="text" name="player3"/><br/>
+          <label for="player2">Player 4:</label>
+          <input type="text" name="player4"/></br>
+          <label for="game_name"/>
+          <input type="text" name="game_name"/>
+          <input type="submit" value="Create"/>
+        </form>
+      </div>
   </body>
 </html>

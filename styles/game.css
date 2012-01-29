@@ -1,0 +1,116 @@
+body {
+    background: #333;
+}
+
+#tr:hover {
+    background-image: url("/images/highlight_tr.png");
+}
+
+#tl:hover {
+    background-image: url("/images/highlight_tl.png");
+}
+
+#br:hover {
+    background-image: url("/images/highlight_br.png");
+}
+
+#bl:hover {
+    background-image: url("/images/highlight_bl.png");
+}
+
+.arrow {
+    cursor: pointer;
+    z-index: 2;
+}
+
+#wall {
+    z-index: 1;
+    position: absolute;
+    right: 510px;
+    bottom: 290px;
+}
+
+#tracks {
+    z-index: -1;
+    position: absolute;
+    right: 25px;
+    bottom: 10px;
+}
+
+#major_arcana {
+    z-index: 4;
+    height: 330px;
+    width: 220px;
+    position: absolute;
+    right: 1000px;
+}
+
+#minor1 {
+    z-index: 4;
+    height: 200px;
+    width: 130px;
+    position: absolute;
+    right: 950px;
+    bottom: 10px;
+}
+
+#minor2 {
+    z-index: 4;
+    height: 200px;
+    width: 130px;
+    position: absolute;
+    right: 1100px;
+    bottom: 10px;
+}
+
+#girl {
+    z-index: 2;
+}
+
+#chair {
+    z-index: 2;
+}
+
+#phone {
+    z-index: 2;
+}
+
+#water {
+    z-index: 2;
+}
+
+#lady {
+    z-index: 2;
+}
+
+#booth {
+    z-index: 2;
+}
+
+#beggar {
+    z-index: 2;
+}
+
+#milk {
+    z-index: 3;
+}
+
+#clock {
+    z-index: 3;
+}
+
+#sign {
+    z-index: 2;
+}
+
+#doll {
+    z-index: 2;
+}
+
+#purse {
+    z-index: 3;
+}
+
+#man {
+    z-index: 2;
+}
