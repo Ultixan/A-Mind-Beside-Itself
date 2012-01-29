@@ -22,6 +22,15 @@ var titles = {
     'key': 'Use the key to change the clock'
 }
 
+var frame = 10000;
+var animate = function() {
+    frame += 1;
+    if (frame > 10015) {
+        frame = 10000;
+    }
+    $('#player').attr('src', 'images/character/character-00' + frame + '.png');
+};
+
 function getParams() {
     var cleanString = location.search.slice(1);
     var paramArray = cleanString.split('&');
@@ -269,6 +278,7 @@ var handlePopulate = function(response) {
     });
     var body = $('body');
     body.append(player).append(tr).append(tl).append(br).append(bl);
+    setInterval(animate,120);
     $('.arrow').css('position', 'absolute');
     moveWisp({
         x: data['character']['x'],
