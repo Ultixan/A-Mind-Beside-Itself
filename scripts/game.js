@@ -81,6 +81,8 @@ var tryMove = function(x, y) {
     moveWisp);
 };
 
+var item_map = [];
+
 var loadInteractions = function(response) {
     var items = JSON.parse(response);
     var body = $('body');
@@ -91,6 +93,7 @@ var loadInteractions = function(response) {
             elem.attr('src', 'images/' + item + '.png');
             elem.css('position', 'absolute');
             var pos = getPos(items[item][0], items[item][1]);
+            item_map.push(pos);
             elem.css('right', pos.x);
             elem.css('bottom', pos.y);
             body.append(elem);
@@ -166,6 +169,30 @@ var handlePopulate = function(response) {
         var pos_tl = getPos(x,y+1);
         var pos_br = getPos(x,y-1);
         var pos_bl = getPos(x+1,y);
+		if ($.inArray(pos_tr, item_map)) {
+			tr.attr('src', 'images/selectionring.png');
+		}
+		else {
+			tr.attr('src', 'images/arrow_tr.png');
+		}
+		if ($.inArray(pos_tl, item_map)) {
+			tl.attr('src', 'images/selectionring.png');
+		}
+		else {
+			tl.attr('src', 'images/arrow_tl.png');
+		}
+		if ($.inArray(pos_br, item_map)) {
+			br.attr('src', 'images/selectionring.png');
+		}
+		else {
+			br.attr('src', 'images/arrow_br.png');
+		}
+		if ($.inArray(pos_bl, item_map)) {
+			bl.attr('src', 'images/selectionring.png');
+		}
+		else {
+			bl.attr('src', 'images/arrow_bl.png');
+		}
         tr.css('right', pos_tr.x + 'px');
         tr.css('bottom', pos_tr.y + 'px');
         tl.css('right', pos_tl.x + 'px');
