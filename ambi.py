@@ -57,11 +57,14 @@ def do_interaction(game_id, x, y):
         game.put()
         
         for index in range(0,len(game.players)):
-            goal1_status = data['status'][game.goals[2*index]]
-            goal2_status = data['status'][game.goals[2*index+1]]
-            if (goal1_status + goal2_status == 4):
-                return "winner"
-        
+            goal1_status = data['status'][game.goals[2*index]
+            goal2_status = data['status'][game.goals[2*index+1]
+            if (goal1_status + goal2_status == 4 ):
+                if(index == game.current_player):
+                    return ["winner", game.players[index]]
+                else:
+                    return ["loser", game.players[index]]
+
         return [item, 2]
     #We don't have what we need to interact
     else:
