@@ -81,18 +81,23 @@ var tryMove = function(x, y) {
     moveWisp);
 };
 
+var item_map = [];
+
 var loadInteractions = function(response) {
     var items = JSON.parse(response);
     var body = $('body');
     for (var item in items) {
-        var elem = $('<img/>');
-        elem.attr('id', item);
-        elem.attr('src', 'images/' + item + '.png');
-        elem.css('position', 'absolute');
-        var pos = getPos(items[item][0], items[item][1]);
-        elem.css('right', pos.x);
-        elem.css('bottom', pos.y);
-        body.append(elem);
+        if (!data['status'][item]) {
+            var elem = $('<img/>');
+            elem.attr('id', item);
+            elem.attr('src', 'images/' + item + '.png');
+            elem.css('position', 'absolute');
+            var pos = getPos(items[item][0], items[item][1]);
+            item_map.push(pos);
+            elem.css('right', pos.x);
+            elem.css('bottom', pos.y);
+            body.append(elem);
+        }
     }
 }
 
@@ -123,7 +128,7 @@ var handlePopulate = function(response) {
     player.css('position', 'absolute');
     player.css('right', pos.x + 'px');
     player.css('bottom', pos.y + 'px');
-    player.css('z-index', '3');
+    player.css('z-index', '5');
     var tr = $('<img class="arrow" id="tr"/>');
     tr.attr('src', 'images/arrow_tr.png');
     tr.bind('click', function() {
@@ -164,6 +169,30 @@ var handlePopulate = function(response) {
         var pos_tl = getPos(x,y+1);
         var pos_br = getPos(x,y-1);
         var pos_bl = getPos(x+1,y);
+		if ($.inArray(pos_tr, item_map)) {
+			tr.attr('src', 'images/selectionring.png');
+		}
+		else {
+			tr.attr('src', 'images/arrow_tr.png');
+		}
+		if ($.inArray(pos_tl, item_map)) {
+			tl.attr('src', 'images/selectionring.png');
+		}
+		else {
+			tl.attr('src', 'images/arrow_tl.png');
+		}
+		if ($.inArray(pos_br, item_map)) {
+			br.attr('src', 'images/selectionring.png');
+		}
+		else {
+			br.attr('src', 'images/arrow_br.png');
+		}
+		if ($.inArray(pos_bl, item_map)) {
+			bl.attr('src', 'images/selectionring.png');
+		}
+		else {
+			bl.attr('src', 'images/arrow_bl.png');
+		}
         tr.css('right', pos_tr.x + 'px');
         tr.css('bottom', pos_tr.y + 'px');
         tl.css('right', pos_tl.x + 'px');

@@ -109,7 +109,7 @@ class move(webapp.RequestHandler):
         )
 
 class interact(webapp.RequestHandler):
-    def get(self):
+    def post(self):
         from ambi import do_interaction
         user = users.get_current_user()
         game_id = cgi.escape(self.request.get('game_id'))
