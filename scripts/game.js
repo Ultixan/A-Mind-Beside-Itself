@@ -182,6 +182,10 @@ var handlePopulate = function(response) {
     };
     var tr = $('<img class="arrow" id="tr"/>');
     tr.attr('src', 'images/arrow_tr.png');
+    if (hit(data['character']['x'] - 1,data['character']['y']))
+    {
+        tl.attr('src', 'images/selectionring.png');
+    }
     tr.bind('click', function() {
         if (tr.attr('src') === 'images/arrow_tr.png') {
             tryMove(
@@ -195,12 +199,12 @@ var handlePopulate = function(response) {
             );
         }
     });
-    if (hit(data['character']['x'] - 1,data['character']['y']))
+    var tl = $('<img class="arrow" id="tl"/>');
+    tl.attr('src', 'images/arrow_tl.png');
+    if (hit(data['character']['x'],data['character']['y'] + 1))
     {
         tl.attr('src', 'images/selectionring.png');
     }
-    var tl = $('<img class="arrow" id="tl"/>');
-    tl.attr('src', 'images/arrow_tl.png');
     tl.bind('click', function() {
         if (tl.attr('src') === 'images/arrow_tl.png') {
             tryMove(
@@ -214,12 +218,12 @@ var handlePopulate = function(response) {
             );
         }
     });
-    if (hit(data['character']['x'],data['character']['y'] + 1))
-    {
-        tl.attr('src', 'images/selectionring.png');
-    }
     var br = $('<img class="arrow" id="br"/>');
     br.attr('src', 'images/arrow_br.png');
+    if (hit(data['character']['x'],data['character']['y'] - 1))
+    {
+        br.attr('src', 'images/selectionring.png');
+    }
     br.bind('click', function() {
         if (br.attr('src') === 'images/arrow_br.png') {
             tryMove(
@@ -233,12 +237,12 @@ var handlePopulate = function(response) {
             );
         }
     });
-    if (hit(data['character']['x'],data['character']['y'] - 1))
-    {
-        br.attr('src', 'images/selectionring.png');
-    }
     var bl = $('<img class="arrow" id="bl"/>');
     bl.attr('src', 'images/arrow_bl.png');
+    if (hit(data['character']['x'] + 1, data['character']['y']))
+    {
+        bl.attr('src', 'images/selectionring.png');
+    }
     bl.bind('click', function() {
         if (bl.attr('src') === 'images/arrow_bl.png') {
             tryMove(
@@ -252,10 +256,6 @@ var handlePopulate = function(response) {
             );
         }
     });
-    if (hit(data['character']['x'] + 1, data['character']['y']))
-    {
-        bl.attr('src', 'images/selectionring.png');
-    }
     
     player.bind('moved', function() {
         var x = data['character']['x'];
