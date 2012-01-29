@@ -55,7 +55,7 @@ function buildPlatform() {
     }
 }
 
-var moveWisp = function(response) {
+var moveWisp = function(response, dummy) {
     if (!response || response === 'false') {
         return;
     }
@@ -69,6 +69,13 @@ var moveWisp = function(response) {
     player.css('right', pos.x + 'px');
     player.css('bottom', pos.y + 'px');
     player.trigger('moved');
+    
+    if (dummy === 'success') {
+        data['move_counter'] -= 1;
+        if (data['move_counter'] == 0) {
+            window.location.reload();
+        }
+    }
 };
 
 var tryMove = function(x, y) {
@@ -255,11 +262,6 @@ var handlePopulate = function(response) {
         br.css('bottom', pos_br.y + 'px');
         bl.css('right', pos_bl.x + 'px');
         bl.css('bottom', pos_bl.y + 'px');
-        
-        data['move_counter'] -= 1;
-        if (data['move_counter'] == 0) {
-            window.location.reload();
-        }
     });
     var body = $('body');
     body.append(player).append(tr).append(tl).append(br).append(bl);
