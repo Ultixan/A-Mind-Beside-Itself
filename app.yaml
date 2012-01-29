@@ -11,7 +11,7 @@ handlers:
   static_dir: images
 - url: /scripts
   static_dir: scripts
-- url: /res
-  static_dir: res
+- url: /sounds
+  static_dir: sounds
 - url: /.*
   script: code.py

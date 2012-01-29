@@ -4,9 +4,14 @@
 	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
 	<script type="text/javascript" src="res/jquery.js"></script>
     <script type="text/javascript" src="res/images.js"></script>
+	<audio id="intro-player" loop="true" autoplay="true">
+	 <source src="sounds/first-intro.mp3" type="audio/mpeg"/>
+	 <source src="sounds/first-intro.ogg" type="audio/ogg"/>
+	 Your browser does not support audio
+	</audio>
 	<script>
 	$(document).ready(function(){
-		for(var i=0; i<10; i++){
+		for(var i=0; i<30; i++){
 			animateImage();
 		}
 	}
@@ -15,9 +20,9 @@
   </head>
   <body class="main-body">
     <h1>A Mind Beside Itself</h1>
+	<div id="imgloader"><img class="image" src="res/kingofwands.png"></div>
     <h2>Welcome, {{ acc.user.nickname }}</h2>
     <h3>List of games:</h3>
-    <div id="imgloader"><img src="res/kingofwands.png"></div>
     <ul id="game_list">
       {% for game in games %}
       <li>
