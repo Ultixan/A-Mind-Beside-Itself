@@ -136,7 +136,7 @@ class interact(webapp.RequestHandler):
 class lose(webapp.RequestHandler):
     path = template_path('lose.html')
     def get(self):
-        winner = cgi_escape(self.request.get('winner'))
+        winner = cgi.escape(self.request.get('winner'))
         template_values = {
             'winner': winner
         }
@@ -147,7 +147,7 @@ class lose(webapp.RequestHandler):
 class win(webapp.RequestHandler): 
     path = template_path('win.html')
     def get(self):
-        winner = cgi_escape(self.request.get('winner'))
+        winner = cgi.escape(self.request.get('winner'))
         template_values = {
             'winner': winner
         }
