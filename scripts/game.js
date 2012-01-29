@@ -74,6 +74,8 @@ var moveWisp = function(response, dummy) {
         data['move_counter'] -= 1;
         if (data['move_counter'] == 0) {
             window.location.reload();
+        } else {
+            $('#counter>span').text(data['move_counter']);
         }
     }
 };
@@ -130,6 +132,7 @@ function interact(x, y) {
 
 var handlePopulate = function(response) {
     data = JSON.parse(response);
+    $('#counter>span').text(data['move_counter']);
     var card = $('#major_arcana');
     card.attr('src', 'images/cards/major/' +
             data['character']['arcana'] +
