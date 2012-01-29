@@ -27,7 +27,7 @@
 	<div id="imgloader"><img class="image" src="res/kingofwands.png"></div>
     <h2>Welcome, {{ acc.user.nickname }}</h2>
     <h3>List of games:</h3>
-    <ul>
+    <ul id="game_list">
       {% for game in games %}
       <li>
         <a class="game_name" href="game?game_id={{ game.game_id }}">
