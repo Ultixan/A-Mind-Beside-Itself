@@ -5,11 +5,17 @@
 		return arr[i];	
 	}
 	function getImage(){
-		var images=new Array();
-		images[0]='<img src="res/kingofwands.png">';
-		images[1]='<img src="res/pageofcups.png">';
-		//When we get all the images, they'll be put here
-		return choice(images);
+		var suits=new Array();
+		suits[0]='wands';
+		suits[1]='cups';
+		suits[2]='swords';
+		suits[3]='coins';
+		var people=new Array();
+		people[0]='king';
+		people[1]='queen';
+		people[2]='knight';
+		people[3]='page';
+		return '<img class="image" src="res/'+choice(people)+'of'+choice(suits)+'.png">';
 	}
 	function animateImage()
 	{

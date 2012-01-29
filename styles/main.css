@@ -25,3 +25,7 @@ a:hover{
 #imgloader{
 	float:right;
 }
+.image{
+	width:205px;
+	height:340px;
+}

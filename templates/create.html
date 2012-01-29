@@ -2,9 +2,18 @@
   <head>
     <title>A Mind Beside Itself</title>
 	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
+	<script type="text/javascript" src="res/jquery.js"></script>
+	<script type="text/javascript" src="res/images.js"></script>
+	<script>
+		$(document).ready(function(){
+			for(var i=0; i<30; i++)
+				animateImage();
+		});
+	</script>
   </head>
   <body class="main-body">
     <h1>Create New Game</h1>
+	  <div id="imgloader"><img class="image" src="res/pageofcups.png"></div>
 	<div class="playernames">
       <span>Player 1:</span>
       <span>{{ acc.user.nickname }}</span>
