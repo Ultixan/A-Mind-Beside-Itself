@@ -64,7 +64,7 @@ def do_interaction(game_id, x, y):
                     return ["winner", game.players[index]]
                 else:
                     return ["loser", game.players[index]]
-   
+
         return [item, 2]
     #We don't have what we need to interact
     else:
