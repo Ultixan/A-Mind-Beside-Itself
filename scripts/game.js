@@ -23,6 +23,7 @@ var titles = {
 }
 
 var frame = 10000;
+var frames = [];
 var animate = function() {
     frame += 1;
     if (frame > 10015) {
