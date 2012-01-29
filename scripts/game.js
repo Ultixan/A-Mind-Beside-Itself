@@ -85,14 +85,16 @@ var loadInteractions = function(response) {
     var items = JSON.parse(response);
     var body = $('body');
     for (var item in items) {
-        var elem = $('<img/>');
-        elem.attr('id', item);
-        elem.attr('src', 'images/' + item + '.png');
-        elem.css('position', 'absolute');
-        var pos = getPos(items[item][0], items[item][1]);
-        elem.css('right', pos.x);
-        elem.css('bottom', pos.y);
-        body.append(elem);
+        if (!data['status'][item]) {
+            var elem = $('<img/>');
+            elem.attr('id', item);
+            elem.attr('src', 'images/' + item + '.png');
+            elem.css('position', 'absolute');
+            var pos = getPos(items[item][0], items[item][1]);
+            elem.css('right', pos.x);
+            elem.css('bottom', pos.y);
+            body.append(elem);
+        }
     }
 }
 
@@ -123,7 +125,7 @@ var handlePopulate = function(response) {
     player.css('position', 'absolute');
     player.css('right', pos.x + 'px');
     player.css('bottom', pos.y + 'px');
-    player.css('z-index', '3');
+    player.css('z-index', '5');
     var tr = $('<img class="arrow" id="tr"/>');
     tr.attr('src', 'images/arrow_tr.png');
     tr.bind('click', function() {

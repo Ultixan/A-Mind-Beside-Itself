@@ -3,6 +3,7 @@ import json
 def move_character(game_id, x, y):
     from util import get_game
     from constants import item_at
+    from constants import default_counter
     #will need a static map of the layout
     if int(x) > 19 or int(y) > 10 or int(x) < 0 or int(y) < 0:
         return False
@@ -11,12 +12,19 @@ def move_character(game_id, x, y):
     char = data['character']
     diff = abs(int(char['x']) - int(x)) + abs(int(char['y']) - int(y))
     if diff == 1:
-        if item_at.get((int(x), int(y))):
+        item = item_at.get((int(x), int(y)))
+        if item and data['status'][item] == 0:
             return False
         char['x'] = int(x)
         char['y'] = int(y)
         data['character'] = char
         game.data = json.dumps(data)
+        game.move_counter = game.move_counter - 1
+        if game.move_counter == 0:
+            game.current_player = game.current_player + 1
+            game.move_counter = default_counter
+            if game.current_player == len(game.players):
+                game.current_player = 0
         game.put()
         return {'x': int(x), 'y': int(y)}
     return False
