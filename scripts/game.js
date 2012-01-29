@@ -99,6 +99,7 @@ var loadInteractions = function(response) {
         if (!data['status'][item]) {
             var elem = $('<img/>');
             elem.attr('id', item);
+            elem.attr('title', item);
             elem.attr('src', 'images/' + item + '.png');
             elem.css('position', 'absolute');
             var pos = getPos(items[item][0], items[item][1]);
