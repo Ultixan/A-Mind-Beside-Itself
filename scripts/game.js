@@ -117,7 +117,7 @@ var handleInteraction = function(response) {
     var item = JSON.parse(response);
     if (item[1] === 1) {
         $('#' + item[0]).remove();
-    }
+    }    
 };
 
 function interact(x, y) {
