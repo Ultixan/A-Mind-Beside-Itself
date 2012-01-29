@@ -124,8 +124,11 @@ class interact(webapp.RequestHandler):
             'content-type', 
             'application/json', 
             charset='utf-8')
+        result = do_interaction(game_id, x, y)
+        if result == 'winner':
+            return.self.redirect('/win')
         self.response.out.write(
-                json.dumps(do_interaction(game_id, x, y))
+                json.dumps(result)
         )
 
 class run_game(webapp.RequestHandler):
