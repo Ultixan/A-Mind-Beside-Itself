@@ -56,7 +56,7 @@ function buildPlatform() {
 }
 
 var moveWisp = function(response) {
-    if (!response) {
+    if (!response || response === 'false') {
         return;
     }
     if (!response.x) {
