@@ -8,8 +8,8 @@ def create_world_data():
     from models import Interactions
     #character data
     character = {}
-    character['x'] = 0
-    character['y'] = 0
+    character['x'] = 9
+    character['y'] = 5
 
     #attach objects to data set
     data = {}

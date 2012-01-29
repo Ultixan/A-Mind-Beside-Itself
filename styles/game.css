@@ -94,3 +94,23 @@ body {
 #milk {
     z-index: 3;
 }
+
+#clock {
+    z-index: 3;
+}
+
+#sign {
+    z-index: 2;
+}
+
+#doll {
+    z-index: 2;
+}
+
+#purse {
+    z-index: 3;
+}
+
+#man {
+    z-index: 2;
+}

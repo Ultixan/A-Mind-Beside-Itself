@@ -33,26 +33,26 @@ item_at = {
     (9,0): 'beggar',
     (0,5): 'cat',
     (17,0): 'bird',
-    (2,1): 'mirror',
+    (13,6): 'mirror',
     (19,4): 'man',
     (4,1): 'sign',
     (5,1): 'clock',
     (6,9): 'chair',
     (19,0): 'doll',
     (7,5): 'matchbox',
-    (19,9): 'knife',
+    (18,9): 'knife',
     (0,2): 'silver',
     (1,2): 'purse',
-    (2,2): 'gold',
-    (3,2): 'card',
+    (17,2): 'gold',
+    (19,5): 'card',
     (4,2): 'bottle',
     (1,10): 'food',
     (14,9): 'milk',
     (9,9): 'bread',
     (10,0): 'cloth',
     (7,1): 'ticket',
-    (0,3): 'pen',
-    (1,3): 'key'
+    (15,4): 'pen',
+    (19,10): 'key'
 }
 
 win_types = {
