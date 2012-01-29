@@ -4,18 +4,43 @@
 	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
 	<script type="text/javascript" src="res/jquery.js"></script>
     <script type="text/javascript" src="res/images.js"></script>
-	<audio id="intro-player" loop="true" autoplay="true">
+	<script type="text/javascript" src="scripts/sndLoader.js"></script>
+	<audio id="intro-player" onended="replay_audio()" autoplay="true">
 	 <source src="sounds/first-intro.mp3" type="audio/mpeg"/>
 	 <source src="sounds/first-intro.ogg" type="audio/ogg"/>
 	 Your browser does not support audio
 	</audio>
+    <audio id="horn-sound" onended="setupSounds()">
+	   <source src="sounds/horn.mp3" type="audio/mpeg"/>
+	   <source src="sounds/horn.ogg" type="audio/ogg"/>
+	   Your browser does not support audio
+	 </audio>
+	 <audio id="train-sound" onended="setupSounds()">
+	   <source src="sounds/train.mp3" type="audio/mpeg"/>
+	   <source src="sounds/train.ogg" type="audio/ogg"/>
+	   Your browser does not support audio
+	 </audio>
+	 <audio id="pa-sound" onended="setupSounds()">
+	   <source src="sounds/pa.mp3" type="audio/mpeg"/>
+	   <source src="sounds/pa.ogg" type="audio/ogg"/>
+	   Your browser does not support audio
+	 </audio>
+	 <audio id="mindthegap-sound" onended="setupSounds()">
+	   <source src="sounds/mindthegap.mp3" type="audio/mpeg"/>
+	   <source src="sounds/mindthegap.ogg" type="audio/ogg"/>
+	   Your browser does not support audio
+	 </audio>
 	<script>
 	$(document).ready(function(){
 		for(var i=0; i<30; i++){
 			animateImage();
 		}
+        setupSounds();
 	}
 	);
+	function replay_audio(){
+		document.getElementById('intro-player').play();
+	}
 	</script>
   </head>
   <body class="main-body">
