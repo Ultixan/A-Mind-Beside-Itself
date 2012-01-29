@@ -2,18 +2,27 @@
   <head>
     <title>A Mind Beside Itself</title>
 	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
-	<script type="text/javascript" src="res/jquery.js"></script>
-	<script type="text/javascript" src="res/images.js"></script>
+	<script type="text/javascript" src="scripts/jquery.js"></script>
+	<script type="text/javascript" src="scripts/images.js"></script>
+    <audio id="intro-player" onended="replay_audio()" autoplay="true">
+	  <source src="sounds/first-intro.mp3" type="audio/mpeg"/>
+	  <source src="sounds/first-intro.ogg" type="audio/ogg"/>
+	  Your browser does not support audio
+	 </audio>
 	<script>
 		$(document).ready(function(){
 			for(var i=0; i<30; i++)
 				animateImage();
-		});
+		});    
+		function replay_audio(){
+			alert("starting again");
+			 $("#intro-player").attr("play","true");
+		 };
 	</script>
   </head>
   <body class="main-body">
     <h1>Create New Game</h1>
-	  <div id="imgloader"><img class="image" src="res/pageofcups.png"></div>
+	  <div id="imgloader"><img class="image" src="images/intro/pageofcups.png"></div>
       <div class="playernames">
         <span>Player 1:</span>
         <span>{{ acc.user.nickname }}</span>

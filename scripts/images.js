@@ -15,7 +15,7 @@
 		people[1]='queen';
 		people[2]='knight';
 		people[3]='page';
-		return '<img class="image" src="res/'+choice(people)+'of'+choice(suits)+'.png">';
+		return '<img class="image" src="images/intro/'+choice(people)+'of'+choice(suits)+'.png">';
 	}
 	function animateImage()
 	{

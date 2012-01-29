@@ -4,9 +4,9 @@
 	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
 	<script type="text/javascript" src="res/jquery.js"></script>
     <script type="text/javascript" src="res/images.js"></script>
-	<audio autoplay="true">
-	 <source src="res/first-intro.mp3" type="audio/mpeg"/>
-	 <source src="res/first-intro.ogg" type="audio/ogg"/>
+	<audio id="intro-player" onended="replay_audio()" autoplay="true">
+	 <source src="sounds/first-intro.mp3" type="audio/mpeg"/>
+	 <source src="sounds/first-intro.ogg" type="audio/ogg"/>
 	 Your browser does not support audio
 	</audio>
 	<script>
@@ -16,6 +16,10 @@
 		}
 	}
 	);
+	function replay_audio(){
+		alert("starting again");
+		$("#intro-player").play();
+	}
 	</script>
   </head>
   <body class="main-body">
