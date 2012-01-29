@@ -140,7 +140,16 @@ class run_game(webapp.RequestHandler):
         self.response.out.write(
             template.render(self.path, {})
         )
-        
+
+class reverse_listing(webapp.RequestHandler):
+    def get(self):
+        from constants import item_at
+        reverse = {}
+        for item in item_at:
+            reverse[item_at[item]] = item
+        self.response.out.write(
+            json.dumps(reverse)
+        )
 
 urls = [
   ('/', game_list),
@@ -148,7 +157,8 @@ urls = [
   ('/populate', populate),
   ('/move', move),
   ('/interact', interact),
-  ('/game', run_game)
+  ('/game', run_game),
+  ('/locations', reverse_listing)
   ]
 
 app = webapp.WSGIApplication(urls, debug=True)

@@ -13,7 +13,7 @@ def move_character(game_id, x, y):
         data['character'] = char
         game.data = json.dumps(data)
         game.put()
-        return True
+        return {'x': int(x), 'y': int(y)}
     return False
 
 def do_interaction(game_id, x, y):
