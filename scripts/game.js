@@ -170,6 +170,16 @@ var handlePopulate = function(response) {
     player.css('right', pos.x + 'px');
     player.css('bottom', pos.y + 'px');
     player.css('z-index', '5');
+    var hit = function(pos) {
+        var match = false;
+        $.each(item_map, function(index, item) {
+            if (item.x === pos.x && item.y === pos.y) {
+                match = true;
+                return false;
+            }
+        });
+        return match;
+    };
     var tr = $('<img class="arrow" id="tr"/>');
     tr.attr('src', 'images/arrow_tr.png');
     tr.bind('click', function() {
@@ -185,6 +195,10 @@ var handlePopulate = function(response) {
             );
         }
     });
+    if (hit(data['character']['x'] - 1,data['character']['y']))
+    {
+        tl.attr('src', 'images/selectionring.png');
+    }
     var tl = $('<img class="arrow" id="tl"/>');
     tl.attr('src', 'images/arrow_tl.png');
     tl.bind('click', function() {
@@ -200,6 +214,10 @@ var handlePopulate = function(response) {
             );
         }
     });
+    if (hit(data['character']['x'],data['character']['y'] + 1))
+    {
+        tl.attr('src', 'images/selectionring.png');
+    }
     var br = $('<img class="arrow" id="br"/>');
     br.attr('src', 'images/arrow_br.png');
     br.bind('click', function() {
@@ -215,6 +233,10 @@ var handlePopulate = function(response) {
             );
         }
     });
+    if (hit(data['character']['x'],data['character']['y'] - 1))
+    {
+        br.attr('src', 'images/selectionring.png');
+    }
     var bl = $('<img class="arrow" id="bl"/>');
     bl.attr('src', 'images/arrow_bl.png');
     bl.bind('click', function() {
@@ -230,6 +252,10 @@ var handlePopulate = function(response) {
             );
         }
     });
+    if (hit(data['character']['x'] + 1, data['character']['y']))
+    {
+        bl.attr('src', 'images/selectionring.png');
+    }
     
     player.bind('moved', function() {
         var x = data['character']['x'];
