@@ -127,7 +127,7 @@ class interact(webapp.RequestHandler):
         result = do_interaction(game_id, x, y)
         if result[0] == 'winner':
             return self.redirect('/win?winner='+result[1])
-        else if result[0] == 'loser':
+        if result[0] == 'loser':
              return self.redirect('/lose?winner='+result[1])
         self.response.out.write(
                 json.dumps(result)
