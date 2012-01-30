@@ -121,10 +121,6 @@ class interact(webapp.RequestHandler):
         y = cgi.escape(self.request.get('y'))
         
         result = do_interaction(game_id, x, y)
-        if result[0] == 'winner':
-            return self.redirect('/win?winner='+result[1])
-        if result[0] == 'loser':
-             return self.redirect('/lose?winner='+result[1])
         self.response.headers.add_header(
             'content-type', 
             'application/json', 

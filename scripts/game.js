@@ -126,6 +126,11 @@ var handleInteraction = function(response) {
         return;
     }
     var item = JSON.parse(response);
+    if (item[0] === 'winner') {
+        location = '/win?winner=' + item[1];
+    } else if (item[0] === 'loser') {
+        location = '/lose?winner=' + item[1];
+    }
     if (item[1] === 1) {
         $('#' + item[0]).remove();
     }    
